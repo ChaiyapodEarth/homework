@@ -41,5 +41,24 @@ else{
         print("This value can be divisible by 2 or 6")
     }
 }
-    
+
+var mainNumber = 1
+var sum = 0
+while mainNumber <= 12 {
+    for count in 1...12{
+        sum = mainNumber * count
+        print("\(mainNumber) * \(count) = \(sum)")
+    }
+    mainNumber += 1
+}
+
+
+
+
+ 
+
+
+
+   
+
 

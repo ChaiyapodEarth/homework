@@ -42,6 +42,7 @@ else{
     }
 }
 
+
 var mainNumber = 1
 var sum = 0
 while mainNumber <= 12 {
@@ -53,12 +54,32 @@ while mainNumber <= 12 {
 }
 
 
+var NumofDivide = 2
+var PrimeNumber = true
+var maxNumber = 100
+var  i = 1
+var sumOfPrime = ""
+while i <= maxNumber {
+    PrimeNumber = true
+    NumofDivide = 2
+    while NumofDivide < (i-1) {
+        if i % NumofDivide == 0{
+            PrimeNumber = false
+            break
+        }
+        NumofDivide += 1
+    }
+    if(PrimeNumber)
+    {
+        sumOfPrime += "\(i) "
+    }
+    i += 1
+}
+print(sumOfPrime)
 
 
- 
 
 
 
-   
 
 

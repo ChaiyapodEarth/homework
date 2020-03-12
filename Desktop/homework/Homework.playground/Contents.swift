@@ -1,7 +1,7 @@
 import UIKit
 
-var InputNamberOne:Int = 5
-var InputNumberTwo:Int = 4
+let InputNamberOne:Int = 5
+let InputNumberTwo:Int = 4
 
 var Summary = InputNamberOne + InputNumberTwo
 var Different = InputNamberOne - InputNumberTwo
@@ -22,4 +22,24 @@ var Coin2:Int = (((((((InputCurrency%1000)%500)%100)%50)%20)%10)%5)/2
 var Coin1:Int = ((((((((InputCurrency%1000)%500)%100)%50)%20)%10)%5)%2)/1
 
 
+var InputValue:Int = 5
+if InputValue%2 == 0{
+    InputValue -= 1
+    if InputValue % 3 == 0 && InputValue % 5 == 0{
+        print("This value can be divisible by 3 and 5")
+    }
+    else{
+        print("This value can  not be divisible by 3 and 5")
+    }
+}
+else{
+    InputValue += 1
+    if InputValue % 2 == 0 || InputValue % 6 == 0 {
+        print("This value can be divisible by 2 or 6")
+    }
+    else{
+        print("This value can be divisible by 2 or 6")
+    }
+}
+    
 

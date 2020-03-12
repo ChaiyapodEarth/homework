@@ -80,6 +80,99 @@ print(sumOfPrime)
 
 
 
+var count1 = 0
+var star1 = ""
+while count1 < 5 {
+    print(star1)
+    star1 += "*"
+    count1 += 1
 
+}
+
+var count2 = 1
+var star2 = ""
+var check = 1
+while count2 < 6 {
+    star2 = ""
+    check = 1
+    while check < (6 - count2 + 1) {
+        star2 += " "
+        check += 1
+    }
+    while check < 6 {
+        star2 += "* "
+        check += 1
+    }
+    print("\(star2)")
+    count2 += 1
+}
+
+var count3 = 0
+var star3 = "   ****"
+while count3 < 3 {
+    print(star3)
+    star3 += ""
+    count3 += 1
+}
+
+//No finish
+//var star4 = ""
+//var count4 = 1
+//var check2 = 1
+//var totalLines4 = 6
+//while count4 < 6 {
+//    star4 = ""
+//    check2 = 1
+//    while check2 < (6 - count4 + 1) {
+//        star4 += " "
+//        check2 += 1
+//    }
+//    for row in 1...count4 {
+//           if  (count4 > 2 && count4 < totalLines4) && (row >= 2 && row < count4) {
+//               star4 += "  "
+//           }
+//            else {
+//               star4 += "* "
+//           }
+//       }
+//
+//    print(" " + star4)
+//    count4 += 1
+//
+//}
+
+var count5 = 0
+var star5 = "   ****"
+while count5 < 5 {
+    print(star5)
+    star5 += "****"
+    count5 += 1
+}
+
+
+let Score:Int = 78
+switch Score {
+    case 0...49:
+        print("F")
+    case 50...54:
+        print("D+")
+    case 55...59:
+        print("D")
+    case 60...64:
+        print("C")
+    case 65...69:
+        print("C+")
+    case 70...74:
+        print("B")
+    case 75...79:
+          print("B+")
+    case 80...100:
+        print("A")
+default:
+    print("Error , score in't corrected")
+}
+
+
+   
 
 

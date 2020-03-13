@@ -115,31 +115,31 @@ while count3 < 3 {
     count3 += 1
 }
 
-//No finish
-//var star4 = ""
-//var count4 = 1
-//var check2 = 1
-//var totalLines4 = 6
-//while count4 < 6 {
-//    star4 = ""
-//    check2 = 1
-//    while check2 < (6 - count4 + 1) {
-//        star4 += " "
-//        check2 += 1
-//    }
-//    for row in 1...count4 {
-//           if  (count4 > 2 && count4 < totalLines4) && (row >= 2 && row < count4) {
-//               star4 += "  "
-//           }
-//            else {
-//               star4 += "* "
-//           }
-//       }
-//
-//    print(" " + star4)
-//    count4 += 1
-//
-//}
+
+var star4 = ""
+var count4 = 1
+var check2 = 1
+var totalLines4 = 6
+while count4 < 6 {
+    star4 = ""
+    check2 = 1
+    while check2 < (6 - count4 + 1) {
+        star4 += " "
+        check2 += 1
+    }
+    for row in 1...count4 {
+           if  (count4 > 2 && count4 < totalLines4) && (row >= 2 && row < count4) {
+               star4 += "  "
+           }
+            else {
+               star4 += "* "
+           }
+       }
+
+    print(" " + star4)
+    count4 += 1
+
+}
 
 var count5 = 0
 var star5 = "   ****"

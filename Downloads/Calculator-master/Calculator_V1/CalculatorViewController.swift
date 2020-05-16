@@ -26,12 +26,8 @@ class CalculatorViewController: UIViewController {
     var operating:String = ""
     
     var performMath:Bool = false
+    var performCalculate:Bool = false
     
-    func changACButton(){
-        if display != "0" {
-            
-        }
-    }
     @IBOutlet weak var divideButtonOutlet: UIButton!
     @IBOutlet weak var multiplyButtonOutlet: UIButton!
     @IBOutlet weak var plusButtonOutlet: UIButton!
@@ -43,95 +39,194 @@ class CalculatorViewController: UIViewController {
         clearButtonOutlet.setTitle("AC", for: .normal)
         fisrtValue = 0
         secondValue = 0
-        display = "0"
+        defaultValue = 0
+        setupDisplay(value: "0")
         result.text = "\(display)"
         performMath = false
-        
-    }
-    @IBAction func divideButton(_ sender: Any) {
-        clearColorButton()
-        divideButtonOutlet.backgroundColor = UIColor.white
-        divideButtonOutlet.setTitleColor(UIColor.systemOrange, for: .normal)
-        
-        if performMath == true{
-            fisrtValue = defaultValue
-        }
-        else{
-            let firstValuFloat = Float(display)
-            fisrtValue = firstValuFloat!
-        }
-        display = "0"
-        result.text = "\(display)"
-        operating = "/"
+        performCalculate = false
     }
     
-    @IBAction func modButton(_ sender: Any) {
+    @IBAction func divideButton(_ sender: Any) {
+        updatrValue()
+        clearColorButton()
+        setColorBackgroudAndText(button: divideButtonOutlet)
+        checkPerformMath()
+        display = "0"
+        operating = "/"
+        performCalculate = true
+    }
+    
+    @IBAction func percenButton(_ sender: Any) {
         clearColorButton()
         let floatDisplay = Float(display)
         let Ans:Float = floatDisplay! / 100
-        
-        display = "\(Ans)"
+        setupDisplay(value: "\(Ans)")
         result.text = "\(display)"
     }
     @IBAction func multiplyButton(_ sender: Any) {
+        updatrValue()
         clearColorButton()
-        multiplyButtonOutlet.backgroundColor = UIColor.white
-        multiplyButtonOutlet.setTitleColor(UIColor.systemOrange, for: .normal)
-        if performMath == true{
-            fisrtValue = defaultValue
-        }
-        else{
-            let firstValuFloat = Float(display)
-            fisrtValue = firstValuFloat!
-            }
-        
-        display = "0"
-        result.text = "\(display)"
+        setColorBackgroudAndText(button: multiplyButtonOutlet)
+        checkPerformMath()
+        setupDisplay(value: "0")
         operating = "*"
+        performCalculate = true
     }
     @IBAction func PlusButton(_ sender: Any) {
+        updatrValue()
         clearColorButton()
-        plusButtonOutlet.backgroundColor = UIColor.white
-        plusButtonOutlet.setTitleColor(UIColor.systemOrange, for: .normal)
-        if performMath == true{
-            fisrtValue = defaultValue
-        }
-        else{
-            let firstValuFloat = Float(display)
-            fisrtValue = firstValuFloat!
-        }
-        display = "0"
-        result.text = "\(display)"
+        setColorBackgroudAndText(button: plusButtonOutlet)
+        checkPerformMath()
+        setupDisplay(value: "0")
         operating = "+"
+        performCalculate = true
     }
     @IBAction func minusButton(_ sender: Any) {
+        updatrValue()
         clearColorButton()
-        minusButtonOutlet.backgroundColor = UIColor.white
-        minusButtonOutlet.setTitleColor(UIColor.systemOrange, for: .normal)
-        
-        if performMath == true{
-            fisrtValue = defaultValue
-        }
-        else{
-            let firstValuFloat = Float(display)
-            fisrtValue = firstValuFloat!
-        }
-        display = "0"
-        result.text = "\(display)"
+        setColorBackgroudAndText(button: minusButtonOutlet)
+        checkPerformMath()
+        setupDisplay(value: "0")
         operating = "-"
+        performCalculate = true
     }
+    
     @IBAction func changeVlaurButton(_ sender: Any) {
         if performMath == true{
             fisrtValue = defaultValue
         }
         var newValue = Float(display)
         newValue! -= newValue! * 2
-        display = "\(newValue!)"
+        setupDisplay(value: "\(newValue)")
         defaultValue = newValue!
         result.text = "\(newValue!.clean)"
         clearColorButton()
     }
+    @IBAction func calculateTotal(_ sender: Any) {
+        clearColorButton()
+        performCalculate = false
+        calculateValue()
+    }
+    @IBAction func zeroButton(_ sender: Any){
+        checkDisplayZero(value: "0")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func dotButton(_ sender: Any) {
+        checkHaveDotInDisplay()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func oneButton(_ sender: Any) {
+        checkDisplayZero(value: "1")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func twoButton(_ sender: Any) {
+        checkDisplayZero(value: "2")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func treeButton(_ sender: Any) {
+        checkDisplayZero(value: "3")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func fourButton(_ sender: Any) {
+        checkDisplayZero(value: "4")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func fiveButton(_ sender: Any) {
+        checkDisplayZero(value: "5")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func sixButton(_ sender: Any) {
+        checkDisplayZero(value: "6")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func sevenButton(_ sender: Any) {
+        checkDisplayZero(value: "7")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    @IBAction func eightButton(_ sender: Any) {
+        checkDisplayZero(value: "8")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
     
+    @IBAction func nineButton(_ sender: Any) {
+        checkDisplayZero(value: "9")
+        checkPerformMathIsTrue()
+        result.text = "\(display)"
+        clearColorButton()
+        clearButtonOutlet.setTitle("C", for: .normal)
+    }
+    
+    func checkDisplayZero(value:String) {
+        if display == "0" {
+            display = "\(value)"
+        }else {
+            display += "\(value)"
+        }
+    }
+    
+    func checkPerformMathIsTrue() {
+        if performMath == true{
+            defaultValue = Float(display)!
+        }
+    }
+    
+    func checkHaveDotInDisplay() {
+        if isContainDot(number: display){
+            return
+        }
+        else{
+            display += "."
+        }
+    }
+    
+    
+    func setupDisplay(value:String) {
+        display = value
+    }
+    
+    func checkPerformMath() {
+        if performMath == true{
+            fisrtValue = defaultValue
+        }
+        else{
+            let firstValuFloat = Float(display)
+            fisrtValue = firstValuFloat!
+        }
+    }
+    
+    func setColorBackgroudAndText(button:UIButton)  {
+        button.backgroundColor = UIColor.white
+        button.setTitleColor(UIColor.systemOrange, for: .normal)
+    }
     
     func  calculateAdd(input:Int,Input2:Int) -> Int{
         return input + Input2
@@ -153,7 +248,11 @@ class CalculatorViewController: UIViewController {
         return number.truncatingRemainder(dividingBy: 1.0) == 0.0
     }
     
-    @IBAction func calculateTotal(_ sender: Any) {
+    func isContainDot(number:String) -> Bool {
+        return number.contains(".")
+    }
+    
+    func calculateForUpdateValue() {
         let secondValueFloat = Float(display)
         secondValue = secondValueFloat!
         switch operating {
@@ -171,37 +270,31 @@ class CalculatorViewController: UIViewController {
             }
             performMath = true
         case "-":
-             let total = fisrtValue - secondValue
-             if isInt(number: total) {
+            let total = fisrtValue - secondValue
+            if isInt(number: total) {
                 let intNumber = Int(total)
                 display = String(intNumber)
                 result.text = "\(intNumber)"
                 defaultValue = Float(intNumber)
-             }else{
+            }else{
                 display = String(total)
                 result.text = "\(total)"
                 defaultValue = total
-             }
-//             defaultValue = total
-//             display = String(total.clean)
-//             result.text = "\(display)"
-             performMath = true
+            }
+            performMath = true
         case "*":
-             let total = fisrtValue * secondValue
-             if isInt(number: total) {
+            let total = fisrtValue * secondValue
+            if isInt(number: total) {
                 let intNumber = Int(total)
                 display = String(intNumber)
                 result.text = "\(intNumber)"
                 defaultValue = Float(intNumber)
-             }else{
+            }else{
                 display = String(total)
                 result.text = "\(total)"
                 defaultValue = total
-             }
-//             defaultValue = total
-//             display = String(total)
-//             result.text = "\(display)"
-             performMath = true
+            }
+            performMath = true
         case "/":
             let total = fisrtValue / secondValue
             if isInt(number: total) {
@@ -214,161 +307,82 @@ class CalculatorViewController: UIViewController {
                 result.text = "\(total)"
                 defaultValue = total
             }
-//            defaultValue = total
-//            display = String(total.clean)
-//            result.text = "\(display)"
+            performMath = true
+            
+        default:
+            result.text = "error"
+        }
+    }
+    
+    func  updatrValue() {
+        if performCalculate == true{
+            calculateForUpdateValue()
+        }
+        else{
+            result.text = "0"
+            return
+        }
+    }
+    
+    func calculateValue() {
+        let secondValueFloat = Float(display)
+        secondValue = secondValueFloat!
+        switch operating {
+        case "+":
+            let total = fisrtValue + secondValue
+            if isInt(number: total) {
+                let intNumber = Int(total)
+                display = String(intNumber)
+                result.text = "\(intNumber)"
+                defaultValue = Float(intNumber)
+            }else{
+                display = String(total)
+                result.text = "\(total)"
+                defaultValue = total
+            }
+            performMath = true
+        case "-":
+            let total = fisrtValue - secondValue
+            if isInt(number: total) {
+                let intNumber = Int(total)
+                display = String(intNumber)
+                result.text = "\(intNumber)"
+                defaultValue = Float(intNumber)
+            }else{
+                display = String(total)
+                result.text = "\(total)"
+                defaultValue = total
+            }
+            performMath = true
+        case "*":
+            let total = fisrtValue * secondValue
+            if isInt(number: total) {
+                let intNumber = Int(total)
+                display = String(intNumber)
+                result.text = "\(intNumber)"
+                defaultValue = Float(intNumber)
+            }else{
+                display = String(total)
+                result.text = "\(total)"
+                defaultValue = total
+            }
+            performMath = true
+        case "/":
+            let total = fisrtValue / secondValue
+            if isInt(number: total) {
+                let intNumber = Int(total)
+                display = String(intNumber)
+                result.text = "\(intNumber)"
+                defaultValue = Float(intNumber)
+            }else{
+                display = String(total)
+                result.text = "\(total)"
+                defaultValue = total
+            }
             performMath = true
         default:
             result.text = "error"
         }
     }
     
-    
-    func isContainDot(number:String) -> Bool {
-        return number.contains(".")
-    }
-    
-    @IBAction func zeroButton(_ sender: Any){
-        if display == "0" {
-            display = "0"
-        }else {
-            display += "0"
-        }
-        
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func dotButton(_ sender: Any) {
-        if isContainDot(number: display){
-            return
-        }
-        else{
-            display += "."
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func oneButton(_ sender: Any) {
-        if display == "0" {
-            display = "1"
-        }else {
-            display += "1"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func twoButton(_ sender: Any) {
-        if display == "0" {
-            display = "2"
-        }else {
-            display += "2"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func treeButton(_ sender: Any) {
-        if display == "0" {
-            display = "3"
-        }else {
-            display += "3"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func fourButton(_ sender: Any) {
-        if display == "0" {
-            display = "4"
-        }else {
-            display += "4"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func fiveButton(_ sender: Any) {
-        if display == "0" {
-            display = "5"
-        }else {
-            display += "5"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func sixButton(_ sender: Any) {
-        if display == "0" {
-            display = "6"
-        }else {
-            display += "6"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func sevenButton(_ sender: Any) {
-       if display == "0" {
-            display = "7"
-        }else {
-            display += "7"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    @IBAction func eightButton(_ sender: Any) {
-        if display == "0" {
-            display = "8"
-        }else {
-            display += "8"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
-    
-    @IBAction func nineButton(_ sender: Any) {
-        if display == "0" {
-            display = "9"
-        }else {
-            display += "9"
-        }
-        if performMath == true{
-            defaultValue = Float(display)!
-        }
-        result.text = "\(display)"
-        clearColorButton()
-        clearButtonOutlet.setTitle("C", for: .normal)
-    }
 }
